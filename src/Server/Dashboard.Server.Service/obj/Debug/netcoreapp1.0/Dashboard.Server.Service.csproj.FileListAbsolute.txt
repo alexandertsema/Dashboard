@@ -1,0 +1,5 @@
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.0\Dashboard.Server.Service.deps.json
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.0\Dashboard.Server.Service.runtimeconfig.json
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.0\Dashboard.Server.Service.runtimeconfig.dev.json
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\obj\Debug\netcoreapp1.0\Dashboard.Server.Service.csprojResolveAssemblyReference.cache
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\obj\Debug\netcoreapp1.0\Dashboard.Server.Service.AssemblyInfo.cs

@@ -1,0 +1,7 @@
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.WebSocket\bin\Debug\netcoreapp1.1\Dashboard.Server.WebSocket.deps.json
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.WebSocket\bin\Debug\netcoreapp1.1\Dashboard.Server.WebSocket.dll
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.WebSocket\bin\Debug\netcoreapp1.1\Dashboard.Server.WebSocket.pdb
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.WebSocket\obj\Debug\netcoreapp1.1\Dashboard.Server.WebSocket.AssemblyInfo.cs
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.WebSocket\obj\Debug\netcoreapp1.1\Dashboard.Server.WebSocket.dll
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.WebSocket\obj\Debug\netcoreapp1.1\Dashboard.Server.WebSocket.pdb
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.WebSocket\obj\Debug\netcoreapp1.1\Dashboard.Server.WebSocket.csprojResolveAssemblyReference.cache
