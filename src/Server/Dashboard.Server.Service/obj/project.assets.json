@@ -6721,14 +6721,14 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Alexander\\.nuget\\packages\\": {}
+    "C:\\Users\\atsema\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.Service\\Dashboard.Server.Service.csproj",
+      "projectUniqueName": "C:\\Users\\atsema\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.Service\\Dashboard.Server.Service.csproj",
       "projectName": "Dashboard.Server.Service",
-      "projectPath": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.Service\\Dashboard.Server.Service.csproj",
-      "outputPath": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.Service\\obj\\",
+      "projectPath": "C:\\Users\\atsema\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.Service\\Dashboard.Server.Service.csproj",
+      "outputPath": "C:\\Users\\atsema\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.Service\\obj\\",
       "outputType": "NETCore",
       "originalTargetFrameworks": [
         "netcoreapp1.1"
@@ -6736,8 +6736,8 @@
       "frameworks": {
         "netcoreapp1.1": {
           "projectReferences": {
-            "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\Dashboard.Server.WebSocket.csproj": {
-              "projectPath": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\Dashboard.Server.WebSocket.csproj"
+            "C:\\Users\\atsema\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\Dashboard.Server.WebSocket.csproj": {
+              "projectPath": "C:\\Users\\atsema\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\Dashboard.Server.WebSocket.csproj"
             }
           }
         }
