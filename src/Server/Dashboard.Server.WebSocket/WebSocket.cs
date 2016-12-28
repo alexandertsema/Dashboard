@@ -59,84 +59,82 @@ namespace Dashboard.Server.WebSocket
 
             stream.Write(response, 0, response.Length);
         }
-
-        private string Recieve(Byte[] bytes)
+        
+        private string Recieve(Byte[] encodedMessage)
         {
-            var type = bytes[0];
-            var secondByte = bytes[1];
-            var lngth = secondByte & 127;
+            var typeByte = encodedMessage[0];
+            var messageLength = encodedMessage[1] & 127;
 
             var indexKeyStarts = 2;
-            if (lngth == 126)
+            if (messageLength == 126)
             {
                 indexKeyStarts = 4;
             }
-            else if (lngth == 127)
+            else if (messageLength == 127)
             {
                 indexKeyStarts = 10;
             }
-            Byte[] key = new byte[4];
 
-            int k = 0;
-            for (int i = indexKeyStarts; i < indexKeyStarts + 4; i++)
+            Byte[] key = new Byte[4];
+            Array.Copy(encodedMessage, indexKeyStarts, key, 0, key.Length);
+
+            Byte[] decodedMessage = new Byte[messageLength];
+
+            for (int i = 0; i < messageLength; i++)
             {
-                key[k] = bytes[i];
-                k++;
+                decodedMessage[i] = (Byte)(encodedMessage[i + key.Length + indexKeyStarts] ^ key[i % 4]);
             }
 
-            var lengh = bytes.Length - indexKeyStarts - 4;
-            Byte[] decoded = new Byte[lengh];
-
-            for (int i = 0; i < lengh; i++)
-            {
-                decoded[i] = (Byte)(bytes[i + key.Length + indexKeyStarts] ^ key[i % 4]);
-            }
-
-            return Encoding.UTF8.GetString(decoded);
+            return Encoding.UTF8.GetString(decodedMessage);
         }
 
-        private void Send(string data, NetworkStream stream)
+        private void Send(string message, NetworkStream stream)
         {
-            var rawData = Encoding.UTF8.GetBytes(data);
-            Byte[] response = new Byte[rawData.Length + 20];
+            var rawMessage = Encoding.UTF8.GetBytes(message);
+            Byte[] response = null;
 
-            response[0] = 129;
-            int indexStartRawData = -1;
+            int indexStartRawData;
 
-            if (rawData.Length <= 125)
+            if (rawMessage.Length <= 125)
             {
-                response[1] = (byte)rawData.Length;
-                indexStartRawData = 2;
+            	indexStartRawData = 2;
+
+            	response = new Byte[rawMessage.Length + indexStartRawData];
+
+                response[1] = (byte)rawMessage.Length;
             }
-            else if (rawData.Length >= 126 && rawData.Length <= 65535)
+            else if (rawMessage.Length >= 126 && rawMessage.Length <= 65535)
             {
+            	indexStartRawData = 4;
+
+            	response = new Byte[rawMessage.Length + indexStartRawData];
+
                 response[1] = 126;
-                response[2] = (byte)((rawData.Length >> 8) & 255);
-                response[3] = (byte)(rawData.Length & 255);
-
-                indexStartRawData = 4;
+                response[2] = (byte)((rawMessage.Length >> 8) & 255);
+                response[3] = (byte)(rawMessage.Length & 255);
             }
-
             else
             {
-                response[1] = 127;
-                response[2] = (byte)((rawData.Length >> 56) & 255);
-                response[3] = (byte)((rawData.Length >> 48) & 255);
-                response[4] = (byte)((rawData.Length >> 40) & 255);
-                response[5] = (byte)((rawData.Length >> 32) & 255);
-                response[6] = (byte)((rawData.Length >> 24) & 255);
-                response[7] = (byte)((rawData.Length >> 16) & 255);
-                response[8] = (byte)((rawData.Length >> 8) & 255);
-                response[9] = (byte)((rawData.Length) & 255);
+            	indexStartRawData = 10;
 
-                indexStartRawData = 10;
+            	response = new Byte[rawMessage.Length + indexStartRawData];
+
+                response[1] = 127;
+                response[2] = (byte)((rawMessage.Length >> 56) & 255);
+                response[3] = (byte)((rawMessage.Length >> 48) & 255);
+                response[4] = (byte)((rawMessage.Length >> 40) & 255);
+                response[5] = (byte)((rawMessage.Length >> 32) & 255);
+                response[6] = (byte)((rawMessage.Length >> 24) & 255);
+                response[7] = (byte)((rawMessage.Length >> 16) & 255);
+                response[8] = (byte)((rawMessage.Length >> 8) & 255);
+                response[9] = (byte)((rawMessage.Length) & 255);
             }
 
-            int j = 0;
-            for (int i = indexStartRawData; i < rawData.Length + indexStartRawData; i++)
+            response[0] = 129; // 129 represents text type
+
+            for (int i = indexStartRawData, j = 0; i < rawMessage.Length + indexStartRawData; i++, j++)
             {
-                response[i] = rawData[j];
-                j++;
+                response[i] = rawMessage[j];
             }
 
             stream.Write(response, 0, response.Length);
@@ -156,20 +154,19 @@ namespace Dashboard.Server.WebSocket
                         {
                         }
 
-                        Byte[] bytes = new Byte[client.Available];
-                        stream.Read(bytes, 0, bytes.Length);
+                        Byte[] rawMessage = new Byte[client.Available];
+                        stream.Read(rawMessage, 0, rawMessage.Length);
 
-                        var data = Encoding.UTF8.GetString(bytes);
-
+                        var data = Encoding.UTF8.GetString(rawMessage);
                         if (new Regex("^GET").IsMatch(data))
                         {
                             HandShake(data, stream);
+                            Console.WriteLine($"Client # {clients} connected");
                             Console.WriteLine(data);
-                            Console.WriteLine($"Client #{clients} connected");
                         }
                         else
                         {
-                            data = Recieve(bytes);
+                            data = Recieve(rawMessage);
                             Console.WriteLine(data);
 
                             for (int i = 0; i < 5; i++)
