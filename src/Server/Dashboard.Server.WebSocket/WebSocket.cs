@@ -146,35 +146,45 @@ namespace Dashboard.Server.WebSocket
 
             Task.Run(() =>
             {
+                Console.WriteLine($"Thread: {Thread.CurrentThread.ManagedThreadId}");
                 using (NetworkStream stream = client.GetStream())
                 {
+                    bool isHandshaked = false;
                     while (true)
                     {
                         while (!stream.DataAvailable)
                         {
                         }
 
-                        Byte[] rawMessage = new Byte[client.Available];
-                        stream.Read(rawMessage, 0, rawMessage.Length);
-
-                        var data = Encoding.UTF8.GetString(rawMessage);
-                        if (new Regex("^GET").IsMatch(data))
+                        if (isHandshaked)
                         {
-                            HandShake(data, stream);
-                            Console.WriteLine($"Client # {clients} connected");
-                            Console.WriteLine(data);
+                            Send($"test!", stream);
                         }
                         else
                         {
-                            data = Recieve(rawMessage);
-                            Console.WriteLine(data);
+                            Byte[] rawMessage = new Byte[client.Available];
+                            stream.Read(rawMessage, 0, rawMessage.Length);
 
-                            for (int i = 0; i < 5; i++)
+                            var data = Encoding.UTF8.GetString(rawMessage);
+                            if (new Regex("^GET").IsMatch(data))
                             {
-                                Send($"you said for the {i} time: {data}", stream);
-                                Thread.Sleep(1000);
+                                HandShake(data, stream);
+                                isHandshaked = true;
+                                Console.WriteLine($"Client # {clients} connected");
+                                //Console.WriteLine(data);
                             }
                         }
+                        //else
+                        //{
+                        //    data = Recieve(rawMessage);
+                        //    Console.WriteLine(data);
+
+                        //    for (int i = 0; i < 5; i++)
+                        //    {
+                        //        Send($"you said for the {i} time: {data}", stream);
+                        //        Thread.Sleep(1000);
+                        //    }
+                        //}
                     }
                 }
             });
@@ -194,8 +204,6 @@ namespace Dashboard.Server.WebSocket
             {
                 var client = await server.AcceptTcpClientAsync();
                 
-                Console.WriteLine($"Thread: {Thread.CurrentThread.ManagedThreadId}");
-
                 HandleClient(client);
             }
         }
