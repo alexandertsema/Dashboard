@@ -8,10 +8,16 @@
     ".NETCoreApp,Version=v1.0": {
       "dashboard.server.service/1.0.0": {
         "dependencies": {
+          "Dashboard.Server.Monitor": "1.0.0",
           "Dashboard.Server.WebSocket": "1.0.0"
         },
         "runtime": {
           "Dashboard.Server.Service.dll": {}
+        }
+      },
+      "dashboard.server.monitor/1.0.0": {
+        "runtime": {
+          "Dashboard.Server.Monitor.dll": {}
         }
       },
       "dashboard.server.websocket/1.0.0": {
@@ -23,6 +29,11 @@
   },
   "libraries": {
     "dashboard.server.service/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "dashboard.server.monitor/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
