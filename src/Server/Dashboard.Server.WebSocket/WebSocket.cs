@@ -29,8 +29,8 @@ namespace Dashboard.Server.WebSocket
 
         #region private fields
 
-        private IPAddress ip;
-        private Int16 port;
+        private readonly IPAddress ip;
+        private readonly Int16 port;
         private Int16 clients = 0;
 
         #endregion private fields

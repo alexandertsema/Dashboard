@@ -6712,10 +6712,10 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\Dashboard.Server.WebSocket.csproj",
-      "projectName": "Dashboard.Server.WebSocket",
-      "projectPath": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\Dashboard.Server.WebSocket.csproj",
-      "outputPath": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\obj\\",
+      "projectUniqueName": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.Monitor\\Dashboard.Server.Monitor.csproj",
+      "projectName": "Dashboard.Server.Monitor",
+      "projectPath": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.Monitor\\Dashboard.Server.Monitor.csproj",
+      "outputPath": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.Monitor\\obj\\",
       "outputType": "NETCore",
       "originalTargetFrameworks": [
         "netcoreapp1.0"

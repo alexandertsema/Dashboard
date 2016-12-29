@@ -1,8 +1,8 @@
 {
   "version": 2,
   "targets": {
-    ".NETCoreApp,Version=v1.1": {
-      "Libuv/1.9.0": {
+    ".NETCoreApp,Version=v1.0": {
+      "Libuv/1.9.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.0.1"
@@ -146,10 +146,10 @@
           "lib/netstandard1.3/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.NETCore.App/1.0.1": {
+      "Microsoft.NETCore.App/1.1.0": {
         "type": "package",
         "dependencies": {
-          "Libuv": "1.9.0",
+          "Libuv": "1.9.1",
           "Microsoft.CSharp": "4.0.1",
           "Microsoft.CodeAnalysis.CSharp": "1.3.0",
           "Microsoft.CodeAnalysis.VisualBasic": "1.3.0",
@@ -2109,21 +2109,21 @@
       },
       "Dashboard.Server.WebSocket/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v1.1",
+        "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
-          "Microsoft.NETCore.App": "1.0.1"
+          "Microsoft.NETCore.App": "1.1.0"
         }
       }
     }
   },
   "libraries": {
-    "Libuv/1.9.0": {
-      "sha512": "9Q7AaqtQhS8JDSIvRBt6ODSLWDBI4c8YxNxyCQemWebBFUtBbc6M5Vi5Gz1ZyIUlTW3rZK9bIr5gnVyv0z7a2Q==",
+    "Libuv/1.9.1": {
+      "sha512": "uqX2Frwf9PW8MaY7PRNY6HM5BpW1D8oj1EdqzrmbEFD5nH63Yat3aEjN/tws6Tw6Fk7LwmLBvtUh32tTeTaHiA==",
       "type": "package",
-      "path": "libuv/1.9.0",
+      "path": "libuv/1.9.1",
       "files": [
         "License.txt",
-        "libuv.1.9.0.nupkg.sha512",
+        "libuv.1.9.1.nupkg.sha512",
         "libuv.nuspec",
         "runtimes/debian-x64/native/libuv.so",
         "runtimes/fedora-x64/native/libuv.so",
@@ -2256,15 +2256,15 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "Microsoft.NETCore.App/1.0.1": {
-      "sha512": "M3iH7u95LntTkJtI/DqN/96MRlb8Wa0SjnXldxHA4FjlvEqghOhwK087bDZAZaTN9C4YHckvaYH3ka9eYWZZZw==",
+    "Microsoft.NETCore.App/1.1.0": {
+      "sha512": "DFec+OUojDVocn1GxAL9uJg4qwsgkvKiQpv6BKd9ljGezvc9p6GpFv51IIakiujkVW/wBtQ0xlfjVSgS1UG/uw==",
       "type": "package",
-      "path": "microsoft.netcore.app/1.0.1",
+      "path": "microsoft.netcore.app/1.1.0",
       "files": [
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netcoreapp1.0/_._",
-        "microsoft.netcore.app.1.0.1.nupkg.sha512",
+        "microsoft.netcore.app.1.1.0.nupkg.sha512",
         "microsoft.netcore.app.nuspec"
       ]
     },
@@ -6715,40 +6715,40 @@
     }
   },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v1.1": [
+    ".NETCoreApp,Version=v1.0": [
       "Dashboard.Server.WebSocket",
-      "Microsoft.NETCore.App >= 1.0.1"
+      "Microsoft.NETCore.App >= 1.1.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\atsema\\.nuget\\packages\\": {}
+    "C:\\Users\\Alexander\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
-      "projectUniqueName": "C:\\Users\\atsema\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.Service\\Dashboard.Server.Service.csproj",
+      "projectUniqueName": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.Service\\Dashboard.Server.Service.csproj",
       "projectName": "Dashboard.Server.Service",
-      "projectPath": "C:\\Users\\atsema\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.Service\\Dashboard.Server.Service.csproj",
-      "outputPath": "C:\\Users\\atsema\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.Service\\obj\\",
+      "projectPath": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.Service\\Dashboard.Server.Service.csproj",
+      "outputPath": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.Service\\obj\\",
       "outputType": "NETCore",
       "originalTargetFrameworks": [
-        "netcoreapp1.1"
+        "netcoreapp1.0"
       ],
       "frameworks": {
-        "netcoreapp1.1": {
+        "netcoreapp1.0": {
           "projectReferences": {
-            "C:\\Users\\atsema\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\Dashboard.Server.WebSocket.csproj": {
-              "projectPath": "C:\\Users\\atsema\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\Dashboard.Server.WebSocket.csproj"
+            "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\Dashboard.Server.WebSocket.csproj": {
+              "projectPath": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\Dashboard.Server.WebSocket.csproj"
             }
           }
         }
       }
     },
     "frameworks": {
-      "netcoreapp1.1": {
+      "netcoreapp1.0": {
         "dependencies": {
           "Microsoft.NETCore.App": {
             "target": "Package",
-            "version": "1.0.1"
+            "version": "1.1.0"
           }
         }
       }

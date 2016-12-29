@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dashboard.Server.WebSocket"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dashboard.Server.Service", "Dashboard.Server.Service\Dashboard.Server.Service.csproj", "{96829234-0998-4EFE-9323-B50B603296BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dashboard.Server.Monitor", "Dashboard.Server.Monitor\Dashboard.Server.Monitor.csproj", "{70DBA6E3-DE37-4AB2-BCE5-B904C7F73CEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,18 @@ Global
 		{96829234-0998-4EFE-9323-B50B603296BF}.Release|x64.Build.0 = Release|x64
 		{96829234-0998-4EFE-9323-B50B603296BF}.Release|x86.ActiveCfg = Release|x86
 		{96829234-0998-4EFE-9323-B50B603296BF}.Release|x86.Build.0 = Release|x86
+		{70DBA6E3-DE37-4AB2-BCE5-B904C7F73CEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70DBA6E3-DE37-4AB2-BCE5-B904C7F73CEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70DBA6E3-DE37-4AB2-BCE5-B904C7F73CEA}.Debug|x64.ActiveCfg = Debug|x64
+		{70DBA6E3-DE37-4AB2-BCE5-B904C7F73CEA}.Debug|x64.Build.0 = Debug|x64
+		{70DBA6E3-DE37-4AB2-BCE5-B904C7F73CEA}.Debug|x86.ActiveCfg = Debug|x86
+		{70DBA6E3-DE37-4AB2-BCE5-B904C7F73CEA}.Debug|x86.Build.0 = Debug|x86
+		{70DBA6E3-DE37-4AB2-BCE5-B904C7F73CEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70DBA6E3-DE37-4AB2-BCE5-B904C7F73CEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70DBA6E3-DE37-4AB2-BCE5-B904C7F73CEA}.Release|x64.ActiveCfg = Release|x64
+		{70DBA6E3-DE37-4AB2-BCE5-B904C7F73CEA}.Release|x64.Build.0 = Release|x64
+		{70DBA6E3-DE37-4AB2-BCE5-B904C7F73CEA}.Release|x86.ActiveCfg = Release|x86
+		{70DBA6E3-DE37-4AB2-BCE5-B904C7F73CEA}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
