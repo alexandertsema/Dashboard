@@ -4,3 +4,9 @@ C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashb
 C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Monitor\obj\Debug\Dashboard.Server.Monitoring.Monitor.csprojResolveAssemblyReference.cache
 C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Monitor\obj\Debug\Dashboard.Server.Monitoring.Monitor.dll
 C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Monitor\obj\Debug\Dashboard.Server.Monitoring.Monitor.pdb
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Monitor\bin\Debug\Dashboard.Server.Monitoring.Monitor.dll
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Monitor\bin\Debug\Dashboard.Server.Monitoring.Monitor.pdb
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Monitor\bin\Debug\Microsoft.Management.Infrastructure.dll
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Monitor\obj\Debug\Dashboard.Server.Monitoring.Monitor.csprojResolveAssemblyReference.cache
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Monitor\obj\Debug\Dashboard.Server.Monitoring.Monitor.dll
+C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Monitor\obj\Debug\Dashboard.Server.Monitoring.Monitor.pdb

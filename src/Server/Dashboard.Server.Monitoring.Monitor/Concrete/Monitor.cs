@@ -45,9 +45,10 @@ namespace Dashboard.Server.Monitoring.Monitor.Concrete
                 {
                     foreach (var metric in metrics.Properties)
                     {
-                        var pr = property.GetType().GetProperty(metric.Name);
-                        var f = property.GetValue(infoModel);
-                        pr.SetValue(infoModel, Convert.ChangeType(metric.Value, pr.PropertyType), null);
+                        var value = property.GetValue(infoModel);
+                        var prop = value.GetType().GetProperty(metric.Name);
+
+                        prop.SetValue(value, Convert.ChangeType(metric.Value, prop.PropertyType));
                     }
                 }
             }
