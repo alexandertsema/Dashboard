@@ -10,16 +10,17 @@ using System.Threading.Tasks;
 
 namespace Dashboard.Server.WebSocket
 {
-    public class WebSocket
+    public abstract class WebSocket
     {
 
         #region contructors
 
-        public WebSocket()
+        protected WebSocket()
         {
 
         }
-        public WebSocket(string ip, short port)
+
+        protected WebSocket(string ip, short port)
         {
             this.ip = IPAddress.Parse(ip);
             this.port = port;
@@ -29,21 +30,20 @@ namespace Dashboard.Server.WebSocket
 
         #region private fields
 
-        private readonly IPAddress ip;
-        private readonly Int16 port;
-        private Int16 clients = 0;
+        protected readonly IPAddress ip;
+        protected readonly Int16 port;
 
         #endregion private fields
 
         #region public properties
 
-        public Int16 Clients { get { return clients; } private set { value = clients; } }
+        
 
         #endregion public properties
 
         #region private methods
 
-        private void HandShake(string data, NetworkStream stream)
+        protected void HandShake(string data, NetworkStream stream)
         {
             Byte[] response = Encoding.UTF8.GetBytes("HTTP/1.1 101 Switching Protocols" + Environment.NewLine
                         + "Connection: Upgrade" + Environment.NewLine
@@ -59,8 +59,119 @@ namespace Dashboard.Server.WebSocket
 
             stream.Write(response, 0, response.Length);
         }
+
+        protected string Recieve(byte[] encodedMessage) => Decode(encodedMessage);
         
-        private string Recieve(Byte[] encodedMessage)
+        protected void Send(string message, NetworkStream stream)
+        {
+            var response = Encode(message);
+
+            stream.Write(response, 0, response.Length);
+        }
+
+        //private void HandleClient(TcpClient client)
+        //{
+        //    ++clients;
+
+        //    Task.Run(() =>
+        //    {
+        //        Console.WriteLine($"Thread: {Thread.CurrentThread.ManagedThreadId}");
+        //        using (NetworkStream stream = client.GetStream())
+        //        {
+        //            bool isHandshaked = false;
+        //            while (true)
+        //            {
+        //                while (!stream.DataAvailable)
+        //                {
+        //                }
+
+        //                if (isHandshaked)
+        //                {
+        //                    Send($"test!", stream);
+        //                }
+        //                else
+        //                {
+        //                    Byte[] rawMessage = new Byte[client.Available];
+        //                    stream.Read(rawMessage, 0, rawMessage.Length);
+
+        //                    var data = Encoding.UTF8.GetString(rawMessage);
+        //                    if (new Regex("^GET").IsMatch(data))
+        //                    {
+        //                        HandShake(data, stream);
+        //                        isHandshaked = true;
+        //                        Console.WriteLine($"Client # {clients} connected");
+        //                        //Console.WriteLine(data);
+        //                    }
+        //                }
+        //                //else
+        //                //{
+        //                //    data = Recieve(rawMessage);
+        //                //    Console.WriteLine(data);
+
+        //                //    for (int i = 0; i < 5; i++)
+        //                //    {
+        //                //        Send($"you said for the {i} time: {data}", stream);
+        //                //        Thread.Sleep(1000);
+        //                //    }
+        //                //}
+        //            }
+        //        }
+        //    });
+        //}
+
+        protected byte[] Encode(string message)
+        {
+            var rawMessage = Encoding.UTF8.GetBytes(message);
+            Byte[] response = null;
+
+            int indexStartRawData;
+
+            if (rawMessage.Length <= 125)
+            {
+                indexStartRawData = 2;
+
+                response = new Byte[rawMessage.Length + indexStartRawData];
+
+                response[1] = (byte)rawMessage.Length;
+            }
+            else if (rawMessage.Length >= 126 && rawMessage.Length <= 65535)
+            {
+                indexStartRawData = 4;
+
+                response = new Byte[rawMessage.Length + indexStartRawData];
+
+                response[1] = 126;
+                response[2] = (byte)((rawMessage.Length >> 8) & 255);
+                response[3] = (byte)(rawMessage.Length & 255);
+            }
+            else
+            {
+                indexStartRawData = 10;
+
+                response = new Byte[rawMessage.Length + indexStartRawData];
+
+                response[1] = 127;
+                response[2] = (byte)((rawMessage.Length >> 56) & 255);
+                response[3] = (byte)((rawMessage.Length >> 48) & 255);
+                response[4] = (byte)((rawMessage.Length >> 40) & 255);
+                response[5] = (byte)((rawMessage.Length >> 32) & 255);
+                response[6] = (byte)((rawMessage.Length >> 24) & 255);
+                response[7] = (byte)((rawMessage.Length >> 16) & 255);
+                response[8] = (byte)((rawMessage.Length >> 8) & 255);
+                response[9] = (byte)((rawMessage.Length) & 255);
+            }
+
+            response[0] = 129; // 129 represents text type
+
+            for (int i = indexStartRawData, j = 0; i < rawMessage.Length + indexStartRawData; i++, j++)
+            {
+                response[i] = rawMessage[j];
+            }
+
+            return response;
+        }
+
+        protected string Decode(byte[] encodedMessage)
         {
             var typeByte = encodedMessage[0];
             var messageLength = encodedMessage[1] & 127;
@@ -88,125 +199,11 @@ namespace Dashboard.Server.WebSocket
             return Encoding.UTF8.GetString(decodedMessage);
         }
 
-        private void Send(string message, NetworkStream stream)
-        {
-            var rawMessage = Encoding.UTF8.GetBytes(message);
-            Byte[] response = null;
-
-            int indexStartRawData;
-
-            if (rawMessage.Length <= 125)
-            {
-            	indexStartRawData = 2;
-
-            	response = new Byte[rawMessage.Length + indexStartRawData];
-
-                response[1] = (byte)rawMessage.Length;
-            }
-            else if (rawMessage.Length >= 126 && rawMessage.Length <= 65535)
-            {
-            	indexStartRawData = 4;
-
-            	response = new Byte[rawMessage.Length + indexStartRawData];
-
-                response[1] = 126;
-                response[2] = (byte)((rawMessage.Length >> 8) & 255);
-                response[3] = (byte)(rawMessage.Length & 255);
-            }
-            else
-            {
-            	indexStartRawData = 10;
-
-            	response = new Byte[rawMessage.Length + indexStartRawData];
-
-                response[1] = 127;
-                response[2] = (byte)((rawMessage.Length >> 56) & 255);
-                response[3] = (byte)((rawMessage.Length >> 48) & 255);
-                response[4] = (byte)((rawMessage.Length >> 40) & 255);
-                response[5] = (byte)((rawMessage.Length >> 32) & 255);
-                response[6] = (byte)((rawMessage.Length >> 24) & 255);
-                response[7] = (byte)((rawMessage.Length >> 16) & 255);
-                response[8] = (byte)((rawMessage.Length >> 8) & 255);
-                response[9] = (byte)((rawMessage.Length) & 255);
-            }
-
-            response[0] = 129; // 129 represents text type
-
-            for (int i = indexStartRawData, j = 0; i < rawMessage.Length + indexStartRawData; i++, j++)
-            {
-                response[i] = rawMessage[j];
-            }
-
-            stream.Write(response, 0, response.Length);
-        }
-
-        private void HandleClient(TcpClient client)
-        {
-            ++clients;
-
-            Task.Run(() =>
-            {
-                Console.WriteLine($"Thread: {Thread.CurrentThread.ManagedThreadId}");
-                using (NetworkStream stream = client.GetStream())
-                {
-                    bool isHandshaked = false;
-                    while (true)
-                    {
-                        while (!stream.DataAvailable)
-                        {
-                        }
-
-                        if (isHandshaked)
-                        {
-                            Send($"test!", stream);
-                        }
-                        else
-                        {
-                            Byte[] rawMessage = new Byte[client.Available];
-                            stream.Read(rawMessage, 0, rawMessage.Length);
-
-                            var data = Encoding.UTF8.GetString(rawMessage);
-                            if (new Regex("^GET").IsMatch(data))
-                            {
-                                HandShake(data, stream);
-                                isHandshaked = true;
-                                Console.WriteLine($"Client # {clients} connected");
-                                //Console.WriteLine(data);
-                            }
-                        }
-                        //else
-                        //{
-                        //    data = Recieve(rawMessage);
-                        //    Console.WriteLine(data);
-
-                        //    for (int i = 0; i < 5; i++)
-                        //    {
-                        //        Send($"you said for the {i} time: {data}", stream);
-                        //        Thread.Sleep(1000);
-                        //    }
-                        //}
-                    }
-                }
-            });
-        }
-
         #endregion private methods
 
         #region public methods
 
-        public async void Start()
-        {
-            TcpListener server = new TcpListener(ip, port);
-            server.Start();
-
-            // waiting for new connections
-            while (true)
-            {
-                var client = await server.AcceptTcpClientAsync();
-                
-                HandleClient(client);
-            }
-        }
+        
 
         #endregion public methods
 
