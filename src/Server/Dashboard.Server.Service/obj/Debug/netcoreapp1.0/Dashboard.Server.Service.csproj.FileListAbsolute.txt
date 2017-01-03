@@ -14,8 +14,6 @@ C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashb
 C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\obj\Debug\netcoreapp1.0\Dashboard.Server.Service.AssemblyInfo.cs
 C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\obj\Debug\netcoreapp1.0\Dashboard.Server.Service.dll
 C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\obj\Debug\netcoreapp1.0\Dashboard.Server.Service.pdb
-C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.0\Dashboard.Server.Monitor.dll
-C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.0\Dashboard.Server.Monitor.pdb
 C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.0\Dashboard.Server.Service.dll
 C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.0\Dashboard.Server.Service.pdb
 C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.0\Dashboard.Server.WebSocket.dll

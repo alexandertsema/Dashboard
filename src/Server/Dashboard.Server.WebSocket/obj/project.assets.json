@@ -6708,14 +6708,14 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Alexander\\.nuget\\packages\\": {}
+    "C:\\Users\\atsema\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\Dashboard.Server.WebSocket.csproj",
+      "projectUniqueName": "C:\\Users\\atsema\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\Dashboard.Server.WebSocket.csproj",
       "projectName": "Dashboard.Server.WebSocket",
-      "projectPath": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\Dashboard.Server.WebSocket.csproj",
-      "outputPath": "C:\\Users\\Alexander\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\obj\\",
+      "projectPath": "C:\\Users\\atsema\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\Dashboard.Server.WebSocket.csproj",
+      "outputPath": "C:\\Users\\atsema\\Documents\\Visual Studio 2017\\Projects\\Dashboard\\src\\Server\\Dashboard.Server.WebSocket\\obj\\",
       "outputType": "NETCore",
       "originalTargetFrameworks": [
         "netcoreapp1.0"

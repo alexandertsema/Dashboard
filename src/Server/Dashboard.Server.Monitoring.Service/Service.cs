@@ -60,10 +60,10 @@ namespace Dashboard.Server.Monitoring.Service
                 while (true)
                 {
                     //todo: until at least 1 client connected to Server.Service get perfomanceModel, send perfomanceModel
-                    response = Encoding.UTF8.GetBytes($"This is perfomanceModel #{i++}");
+                    response = Encoding.UTF8.GetBytes($"This is perfomanceModel {DateTime.Now} ");
                     stream.Write(response, 0, response.Length);
 
-                    Thread.Sleep(500);
+                    Thread.Sleep(100);
                 }
             } 
         }

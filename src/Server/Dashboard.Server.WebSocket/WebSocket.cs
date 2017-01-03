@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Security.Cryptography;
@@ -35,13 +36,7 @@ namespace Dashboard.Server.WebSocket
 
         #endregion private fields
 
-        #region public properties
-
-        
-
-        #endregion public properties
-
-        #region private methods
+        #region protected methods
 
         protected void HandShake(string data, NetworkStream stream)
         {
@@ -65,61 +60,22 @@ namespace Dashboard.Server.WebSocket
         protected void Send(string message, NetworkStream stream)
         {
             var response = Encode(message);
-
-            stream.Write(response, 0, response.Length);
+            try
+            {
+                stream.Write(response, 0, response.Length);
+            }
+            catch (IOException exception)
+            {
+                //todo: kill current task: client disconnected
+                stream.FlushAsync();
+            }
         }
 
-        //private void HandleClient(TcpClient client)
-        //{
-        //    ++clients;
+        #endregion protected methods
 
-        //    Task.Run(() =>
-        //    {
-        //        Console.WriteLine($"Thread: {Thread.CurrentThread.ManagedThreadId}");
-        //        using (NetworkStream stream = client.GetStream())
-        //        {
-        //            bool isHandshaked = false;
-        //            while (true)
-        //            {
-        //                while (!stream.DataAvailable)
-        //                {
-        //                }
+        #region private methods
 
-        //                if (isHandshaked)
-        //                {
-        //                    Send($"test!", stream);
-        //                }
-        //                else
-        //                {
-        //                    Byte[] rawMessage = new Byte[client.Available];
-        //                    stream.Read(rawMessage, 0, rawMessage.Length);
-
-        //                    var data = Encoding.UTF8.GetString(rawMessage);
-        //                    if (new Regex("^GET").IsMatch(data))
-        //                    {
-        //                        HandShake(data, stream);
-        //                        isHandshaked = true;
-        //                        Console.WriteLine($"Client # {clients} connected");
-        //                        //Console.WriteLine(data);
-        //                    }
-        //                }
-        //                //else
-        //                //{
-        //                //    data = Recieve(rawMessage);
-        //                //    Console.WriteLine(data);
-
-        //                //    for (int i = 0; i < 5; i++)
-        //                //    {
-        //                //        Send($"you said for the {i} time: {data}", stream);
-        //                //        Thread.Sleep(1000);
-        //                //    }
-        //                //}
-        //            }
-        //        }
-        //    });
-        //}
-
-        protected byte[] Encode(string message)
+        private byte[] Encode(string message)
         {
             var rawMessage = Encoding.UTF8.GetBytes(message);
             Byte[] response = null;
@@ -171,7 +127,7 @@ namespace Dashboard.Server.WebSocket
             return response;
         }
 
-        protected string Decode(byte[] encodedMessage)
+        private string Decode(byte[] encodedMessage)
         {
             var typeByte = encodedMessage[0];
             var messageLength = encodedMessage[1] & 127;
@@ -200,12 +156,6 @@ namespace Dashboard.Server.WebSocket
         }
 
         #endregion private methods
-
-        #region public methods
-
         
-
-        #endregion public methods
-
     }
 }
