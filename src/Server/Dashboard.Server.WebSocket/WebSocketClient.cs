@@ -12,7 +12,7 @@ namespace Dashboard.Server.WebSocket
         public TcpClient Client
         {
             get { return client; }
-            set { value = client; }
+            set { client = value; }
         }
 
         public NetworkStream Stream

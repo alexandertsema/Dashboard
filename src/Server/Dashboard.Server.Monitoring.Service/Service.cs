@@ -19,17 +19,18 @@ namespace Dashboard.Server.Monitoring.Service
         private static async void ServerStart()
         {
             var monitor = new Monitor.Concrete.Monitor();
-            
+
             var infoModel = monitor.GetInfoModel();
             Console.WriteLine($"infoModel retrieved");
             //todo: !!! port dll to .Net Standart !!!
-            
+
             //todo: init server
             var server = new TcpListener(IPAddress.Parse("127.0.0.1"), 8888);
-            
+
             //todo: start waiting for client
             server.Start();
             Console.WriteLine($"Monitoring.Service started at 127.0.0.1:8888, waiting for Server.Service to connect...");
+
 
             //todo: client accepted
             var client = await server.AcceptTcpClientAsync();
@@ -39,33 +40,46 @@ namespace Dashboard.Server.Monitoring.Service
             var stream = client.GetStream();
             var response = Encoding.UTF8.GetBytes(SerializationHelper.Serialize(infoModel));
             stream.Write(response, 0, response.Length);
-
-            Console.WriteLine($"infoModel sent to Server.Service, waiting for signal...");
-
-            //todo: waiting for signal
-            while (!client.GetStream().DataAvailable) // wait for infoModel
+            
+            while (true)
             {
-            }
-
-            //todo: signal received
-            var rawMessage = new Byte[client.Available];
-            stream.Read(rawMessage, 0, rawMessage.Length);
-            var signal = Encoding.UTF8.GetString(rawMessage);
-            Console.WriteLine($"signal with OpCode {signal} recieved");
-            //todo: broadcasting forever
-            if (Convert.ToInt16(signal) == 2)
-            {
-                Console.WriteLine("Start broadcasting");
-                int i = 0;
-                while (true)
+                Console.WriteLine($"infoModel sent to Server.Service, waiting for signal...");
+                //todo: waiting for signal
+                while (!client.GetStream().DataAvailable) // wait for signal to start broadcasting
                 {
-                    //todo: until at least 1 client connected to Server.Service get perfomanceModel, send perfomanceModel
-                    response = Encoding.UTF8.GetBytes($"This is perfomanceModel {DateTime.Now} ");
-                    stream.Write(response, 0, response.Length);
-
-                    Thread.Sleep(100);
                 }
-            } 
+
+                //todo: signal received
+                var rawMessage = new Byte[client.Available];
+                stream.Read(rawMessage, 0, rawMessage.Length);
+                var signal = Encoding.UTF8.GetString(rawMessage);
+                Console.WriteLine($"signal with OpCode {signal} recieved");
+                //todo: broadcasting forever
+                if (Convert.ToInt16(signal) == 2)
+                {
+                    Console.WriteLine("Start broadcasting");
+                    while (true)
+                    {
+                        if (client.GetStream().DataAvailable) // wait for signal to stop broadcasting
+                        {
+                            rawMessage = new Byte[client.Available];
+                            stream.Read(rawMessage, 0, rawMessage.Length);
+                            signal = Encoding.UTF8.GetString(rawMessage);
+                            if (Convert.ToInt16(signal) == 3)
+                            {
+                                Console.WriteLine($"signal with OpCode {signal} recieved, stoping broadcasting...");
+                                break;
+                            }
+                        }
+                        //todo: until at least 1 client connected to Server.Service get perfomanceModel, send perfomanceModel
+                        var perfomanceModel = monitor.GetPerfomanceStatistics();
+                        response = Encoding.UTF8.GetBytes(SerializationHelper.Serialize(perfomanceModel));
+                        stream.Write(response, 0, response.Length);
+
+                        Thread.Sleep(100);
+                    }
+                }
+            }
         }
     }
 }

@@ -4,9 +4,11 @@
     {
         public InfoModel()
         {
-            this.CpuInfo = new CpuInfoModel();
+            CpuInfo = new CpuInfoModel();
+            RamInfo = new RamInfoModel();
         }
 
         public CpuInfoModel CpuInfo { get; set; }
+        public RamInfoModel RamInfo { get; set; }
     }
 }

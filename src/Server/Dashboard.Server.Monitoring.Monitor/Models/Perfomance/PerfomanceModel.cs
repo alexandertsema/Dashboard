@@ -5,8 +5,10 @@
         public PerfomanceModel()
         {
             CpuPerfomance = new CpuPerfomanceModel();
+            RamPerfomance = new RamPerfomanceModel();
         }
 
         public CpuPerfomanceModel CpuPerfomance { get; set; }
+        public RamPerfomanceModel RamPerfomance{ get; set; }
     }
 }

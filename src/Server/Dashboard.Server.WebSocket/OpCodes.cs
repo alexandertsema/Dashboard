@@ -6,5 +6,6 @@ namespace Dashboard.Server.WebSocket
     {
         public static Int16 RequestInfoModel = 1;
         public static Int16 RequestBroadcasting = 2;
+        public static Int16 StopBroadcasting = 3;
     }
 }

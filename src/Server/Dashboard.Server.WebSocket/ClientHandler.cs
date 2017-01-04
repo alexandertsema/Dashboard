@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.IO;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -10,14 +11,15 @@ using System.Threading.Tasks;
 
 namespace Dashboard.Server.WebSocket
 {
-    public class ClientHandler : WebSocket, IDisposable
+    public class ClientHandler : WebSocket//, IDisposable
     {
         private readonly Guid clientId;
         private readonly TcpClient client;
         private readonly String infoModelString;
         private readonly Boolean isFirstClient;
         private readonly WebSocketClient monitoringClient;
-        bool disposed = false;
+        private readonly WebSocketServer server;
+        bool disposed;
         private static ConcurrentBag<Task> tasks = new ConcurrentBag<Task>();
 
         public ClientHandler()
@@ -32,13 +34,14 @@ namespace Dashboard.Server.WebSocket
             InitializeClient();
         }
 
-        public ClientHandler(Guid clientId, TcpClient client, string infoModelString, bool isFirstClient, WebSocketClient monitoringClient)
+        public ClientHandler(Guid clientId, TcpClient client, string infoModelString, bool isFirstClient, WebSocketClient monitoringClient, WebSocketServer server)
         {
             this.clientId = clientId;
             this.client = client;
             this.infoModelString = infoModelString;
             this.isFirstClient = isFirstClient;
             this.monitoringClient = monitoringClient;
+            this.server = server;
 
             InitializeClient();
         }
@@ -58,7 +61,8 @@ namespace Dashboard.Server.WebSocket
         {
             
             var tokenSource = new CancellationTokenSource();
-            var mainTask = Task.Factory.StartNew(() => RunMainTaskAsync(tokenSource, tasks), tokenSource.Token, TaskCreationOptions.None, TaskScheduler.Default); ;
+            var mainTask = Task.Factory.StartNew(() => RunMainTaskAsync(tokenSource, tasks), tokenSource.Token,
+                TaskCreationOptions.None, TaskScheduler.Default);
             tasks.Add(mainTask);
             try
             {
@@ -97,10 +101,27 @@ namespace Dashboard.Server.WebSocket
                     Console.WriteLine($"Client {clientId} is waiting for incoming messages...");
                     while (!stream.DataAvailable)
                     {
+                        if (tokenSource.Token.IsCancellationRequested)
+                        {
+                            Console.WriteLine($"Main Task #{Thread.CurrentThread.ManagedThreadId} for {clientId} ends");
+                            tokenSource.Token.ThrowIfCancellationRequested();
+                        }
                     }
-
+                    
                     rawMessage = new Byte[client.Available];
-                    stream.Read(rawMessage, 0, rawMessage.Length);
+                    //try
+                    //{
+                        stream.Read(rawMessage, 0, rawMessage.Length);
+                    //}
+                    //catch (IOException exception)
+                    //{
+                    //    //tokenSource.Cancel(); //todo: kill the thread if client disconnected
+                    //    if (tokenSource.Token.IsCancellationRequested)
+                    //    {
+                    //        Console.WriteLine($"Main Task #{Thread.CurrentThread.ManagedThreadId} for {clientId} ends");
+                    //        tokenSource.Token.ThrowIfCancellationRequested();
+                    //    }
+                    //}
 
                     var opCode = Recieve(rawMessage);
                     Console.WriteLine($"Client {clientId} received {opCode} OpCode");
@@ -109,19 +130,10 @@ namespace Dashboard.Server.WebSocket
                         Send(infoModelString, stream); // send infoModel to client
                         Console.WriteLine($"Client {clientId} starts broadcasting because he was the first client in the session: {isFirstClient}");
 
-                        var task = Task.Factory.StartNew(() => Broadcasting(tokenSource, stream), tokenSource.Token, TaskCreationOptions.AttachedToParent, TaskScheduler.Default);
-                        //tasks.Add(task);
-                        if (tokenSource.Token.IsCancellationRequested)
-                        {
-                            Console.WriteLine($"Main Task {Thread.CurrentThread.ManagedThreadId} ends");
-                            tokenSource.Token.ThrowIfCancellationRequested();
-                        }
-                    }
-
-                    if (tokenSource.Token.IsCancellationRequested)
-                    {
-                        Console.WriteLine($"Main Task {Thread.CurrentThread.ManagedThreadId} ends");
-                        tokenSource.Token.ThrowIfCancellationRequested();
+                        var task = Task.Factory.StartNew(() =>
+                                Broadcasting(tokenSource, stream), tokenSource.Token, TaskCreationOptions.AttachedToParent,
+                            TaskScheduler.Default);
+                        tasks.Add(task);
                     }
                 }
             }
@@ -131,13 +143,20 @@ namespace Dashboard.Server.WebSocket
         {
             while (true) // broadcast perfomanceModel to client
             {
-                if (!client.Connected)
+                if (!client.Connected) // cancel the task if client is disconnected
                 {
-                    tokenSource.Cancel(); //todo: kill the thread if client disconnected
+                    tokenSource.Cancel();
 
                     if (tokenSource.Token.IsCancellationRequested)
                     {
-                        Console.WriteLine($"Broadcasting {Thread.CurrentThread.ManagedThreadId} ends");
+                        Console.WriteLine($"Client {clientId} requested to disconnect #{Thread.CurrentThread.ManagedThreadId}");
+                        server.Clients--;
+                        if (server.Clients <= 0)
+                        {
+                            Console.WriteLine($"There are no more clients left connected to Server.Service, signalling Monitoring.Service to disconnect...");
+                            monitoringClient.Signal(OpCodes.StopBroadcasting);
+                        }
+                        Console.WriteLine($"Broadcasting #{Thread.CurrentThread.ManagedThreadId} for {clientId} ends");
                         tokenSource.Token.ThrowIfCancellationRequested();
                     }
                 }
@@ -150,40 +169,40 @@ namespace Dashboard.Server.WebSocket
                     continue;
 
                 var perfomanceModel = monitoringClient.Recieve();
-                Console.WriteLine($"Client {clientId} received perfomanceModel: {perfomanceModel} from Monitoring.Service");
+                //Console.WriteLine($"Client {clientId} received perfomanceModel: {perfomanceModel} from Monitoring.Service");
                 
                 Send(perfomanceModel, stream); // send PerfomanceModel to client
             }
         }
 
         // Public implementation of Dispose pattern callable by consumers.
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+        //public void Dispose()
+        //{
+        //    Dispose(true);
+        //    GC.SuppressFinalize(this);
+        //}
 
-        // Protected implementation of Dispose pattern.
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed)
-                return;
+        //// Protected implementation of Dispose pattern.
+        //protected virtual void Dispose(bool disposing)
+        //{
+        //    if (disposed)
+        //        return;
 
-            if (disposing)
-            {
-                // Free any other managed objects here.
-                //
-            }
+        //    if (disposing)
+        //    {
+        //        // Free any other managed objects here.
+        //        //
+        //    }
 
-            // Free any unmanaged objects here.
-            //
-            disposed = true;
-        }
+        //    // Free any unmanaged objects here.
+        //    //
+        //    disposed = true;
+        //}
 
-        ~ClientHandler()
-        {
-            Dispose(false);
-        }
+        //~ClientHandler()
+        //{
+        //    Dispose(false);
+        //}
     }
 
 }

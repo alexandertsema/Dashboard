@@ -5,6 +5,6 @@ namespace Dashboard.Server.Monitoring.Monitor.Models.Perfomance
 {
     public class CpuPerfomanceModel : CpuBaseModel
     {
-        public Double LoadPercentage { get; set; }
+        public Int16 LoadPercentage { get; set; }
     }
 }
