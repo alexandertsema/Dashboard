@@ -40,10 +40,12 @@ namespace Dashboard.Server.Monitoring.Service
             var stream = client.GetStream();
             var response = Encoding.UTF8.GetBytes(SerializationHelper.Serialize(infoModel));
             stream.Write(response, 0, response.Length);
-            
+
+            Console.WriteLine($"infoModel sent to Server.Service");
+
             while (true)
             {
-                Console.WriteLine($"infoModel sent to Server.Service, waiting for signal...");
+                Console.WriteLine($"Waiting for signal...");
                 //todo: waiting for signal
                 while (!client.GetStream().DataAvailable) // wait for signal to start broadcasting
                 {
@@ -76,7 +78,7 @@ namespace Dashboard.Server.Monitoring.Service
                         response = Encoding.UTF8.GetBytes(SerializationHelper.Serialize(perfomanceModel));
                         stream.Write(response, 0, response.Length);
 
-                        Thread.Sleep(100);
+                        //Thread.Sleep(100);
                     }
                 }
             }

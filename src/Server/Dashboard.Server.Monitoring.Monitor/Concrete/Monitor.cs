@@ -2,8 +2,8 @@
 using System.Management;
 using Dashboard.Server.Monitoring.Monitor.Abstract;
 using Dashboard.Server.Monitoring.Monitor.Helpers;
-using Dashboard.Server.Monitoring.Monitor.Models.Info;
-using Dashboard.Server.Monitoring.Monitor.Models.Perfomance;
+using Dashboard.Server.Monitoring.Monitor.Models.InfoModels;
+using Dashboard.Server.Monitoring.Monitor.Models.PerfomanceModels;
 
 namespace Dashboard.Server.Monitoring.Monitor.Concrete
 {

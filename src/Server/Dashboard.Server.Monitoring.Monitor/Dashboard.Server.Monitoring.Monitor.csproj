@@ -50,15 +50,16 @@
     <Compile Include="Concrete\Monitor.cs" />
     <Compile Include="Helpers\SerializationHelper.cs" />
     <Compile Include="Helpers\WmiHelper.cs" />
-    <Compile Include="Models\BaseModels\RamBaseModel.cs" />
-    <Compile Include="Models\BaseModels\CpuBaseModel.cs" />
-    <Compile Include="Models\BaseModels\WmiNamespacesEnum.cs" />
-    <Compile Include="Models\Info\RamInfoModel.cs" />
-    <Compile Include="Models\Info\CpuInfoModel.cs" />
-    <Compile Include="Models\Info\InfoModel.cs" />
-    <Compile Include="Models\Perfomance\RamPerfomanceModel.cs" />
-    <Compile Include="Models\Perfomance\CpuPerfomanceModel.cs" />
-    <Compile Include="Models\Perfomance\PerfomanceModel.cs" />
+    <Compile Include="Models\BaseModels\BaseModel.cs" />
+    <Compile Include="Models\Enums\WmiNamespacesEnum.cs" />
+    <Compile Include="Models\InfoModels\DiskInfoModel.cs" />
+    <Compile Include="Models\InfoModels\RamInfoModel.cs" />
+    <Compile Include="Models\InfoModels\CpuInfoModel.cs" />
+    <Compile Include="Models\InfoModels\InfoModel.cs" />
+    <Compile Include="Models\PerfomanceModels\DiskPerfomanceModel.cs" />
+    <Compile Include="Models\PerfomanceModels\RamPerfomanceModel.cs" />
+    <Compile Include="Models\PerfomanceModels\CpuPerfomanceModel.cs" />
+    <Compile Include="Models\PerfomanceModels\PerfomanceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

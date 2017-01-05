@@ -1,4 +1,4 @@
-﻿namespace Dashboard.Server.Monitoring.Monitor.Models.BaseModels
+﻿namespace Dashboard.Server.Monitoring.Monitor.Models.Enums
 {
     public enum WmiNamespacesEnum
     {

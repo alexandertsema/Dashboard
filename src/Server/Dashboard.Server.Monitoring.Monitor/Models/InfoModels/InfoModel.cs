@@ -1,4 +1,4 @@
-﻿namespace Dashboard.Server.Monitoring.Monitor.Models.Info
+﻿namespace Dashboard.Server.Monitoring.Monitor.Models.InfoModels
 {
     public class InfoModel
     {
@@ -6,9 +6,11 @@
         {
             CpuInfo = new CpuInfoModel();
             RamInfo = new RamInfoModel();
+            DiskInfo = new DiskInfoModel();
         }
 
         public CpuInfoModel CpuInfo { get; set; }
         public RamInfoModel RamInfo { get; set; }
+        public DiskInfoModel DiskInfo { get; set; }
     }
 }
