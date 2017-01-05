@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+</head>
+<body ng-app="app">
+<script language="javascript" type="text/javascript">
+    "use strict";
+
+    angular.module("app", ["chart.js"]).controller("LineCtrl", function ($scope) {
+
+      $scope.labels = [];
+      $scope.series = ['Series A'];
+      $scope.data = [[]];
+      $scope.onClick = function (points, evt) {
+        console.log(points, evt);
+      };
+      $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+      $scope.options = {
+        scales: {
+          yAxes: [
+            {
+              id: 'y-axis-1',
+              type: 'linear',
+              display: true,
+              position: 'left'
+            },
+            {
+              id: 'y-axis-2',
+              type: 'linear',
+              display: true,
+              position: 'right'
+            }
+          ]
+        }
+      };
+    
+
+    var exampleSocket;
+
+    exampleSocket = new WebSocket("ws://127.0.0.1:2222");
+
+    exampleSocket.onopen = function(event) {
+        exampleSocket.send(1);
+    };
+
+    exampleSocket.onmessage = function(event) {
+        console.log(event.data);
+        bind(event.data);
+
+        // var msg = document.createElement("DIV");
+        // msg.innerHTML = event.data;
+        // document.getElementById("responses").appendChild(msg);
+    }
+
+    function send() {
+        //exampleSocket.onopen = function(event) {
+        exampleSocket.send(2);
+        //};
+    }
+    var i = 0;
+    var j = 0;
+    function bind(str){
+
+        if (i==0) {
+            i++;
+            return;
+        }
+    	var model = JSON.parse(str);
+
+    	document.getElementById("LoadPercentage").innerHTML = model.CpuPerfomance.LoadPercentage;
+    	document.getElementById("TotalVisibleMemorySize").innerHTML = model.RamPerfomance.TotalVisibleMemorySize;
+    	document.getElementById("FreePhysicalMemory").innerHTML = model.RamPerfomance.FreePhysicalMemory;
+    	document.getElementById("DiskReadBytesPersec").innerHTML = model.DiskPerfomance.DiskReadBytesPersec;
+    	document.getElementById("DiskWriteBytesPersec").innerHTML = model.DiskPerfomance.DiskWriteBytesPersec;
+
+        $scope.data[0].push(model.CpuPerfomance.LoadPercentage);
+        $scope.labels.push(++j);
+
+        $scope.$apply();
+    }
+
+    function close() {
+        alert("clicked");
+        exampleSocket.close();
+    }
+
+    });
+</Script>
+
+    <input type="text" id="msg"/>
+    <input type="button" value="send" onclick="send()"/>
+    <br>
+    <input type="button" value="close" onclick="close()"/>
+    
+    <div ng-controller="LineCtrl">
+        <canvas id="line" class="chart chart-line" chart-data="data"
+        chart-labels="labels" chart-series="series" chart-options="options"
+        chart-dataset-override="datasetOverride" chart-click="onClick">
+        </canvas>
+    </div>
+    <div id="responses">
+    	<p>CPU</p>
+    	<div id="cpu">
+    		<p>LoadPercentage: </p>
+    		<div id="LoadPercentage"></div>
+    	</div>
+    	<p>RAM</p>
+    	<div id="ram">
+    		<p>TotalVisibleMemorySize: </p>
+    		<div id="TotalVisibleMemorySize"></div>
+    		<p>FreePhysicalMemory: </p>
+    		<div id="FreePhysicalMemory"></div>
+    	</div>
+    	<p>Disk</p>
+    	<div id="disk">
+    		<p>DiskReadBytesPersec: </p>
+    		<div id="DiskReadBytesPersec"></div>
+    		<p>DiskWriteBytesPersec: </p>
+    		<div id="DiskWriteBytesPersec"></div>
+    	</div>
+    </div>
+</body>
+    
+    <script src="js/chart.min.js"></script>
+    <script src="js/angular-chart.min.js"></script>
+</html>

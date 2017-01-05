@@ -47,7 +47,7 @@ namespace Dashboard.Server.Monitoring.Service
             {
                 Console.WriteLine($"Waiting for signal...");
                 //todo: waiting for signal
-                while (!client.GetStream().DataAvailable) // wait for signal to start broadcasting
+                while (!stream.DataAvailable) // wait for signal to start broadcasting todo: very excpensive! up to 16% CPU
                 {
                 }
 

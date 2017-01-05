@@ -9,7 +9,7 @@ namespace Dashboard.Server.Monitoring.Monitor.Helpers
     {
         public static string GetServerName() => $@"\\{Environment.MachineName}\root\CIMV2";
 
-        public static SelectQuery BuildQuery<T>(T model) //todo: cover with test
+        public static SelectQuery BuildQuery<T>(T model)
         {
             var query = new SelectQuery();
 
@@ -30,6 +30,8 @@ namespace Dashboard.Server.Monitoring.Monitor.Helpers
             }
 
             query.QueryString = queryString.ToString();
+
+            queryString = null;
 
             return query;
         }

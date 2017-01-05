@@ -40,17 +40,19 @@ namespace Dashboard.Server.Monitoring.Monitor.Concrete
             foreach (var property in properties)
             {
                 var query = WmiHelper.BuildQuery(property.GetValue(model));
-                var searcher = new ManagementObjectSearcher(scope, query);
 
-                foreach (var metrics in searcher.Get())
+                using (var searcher = new ManagementObjectSearcher(scope, query))
                 {
-                    foreach (var metric in metrics.Properties)
+                    foreach (var metrics in searcher.Get())
                     {
-                        var value = property.GetValue(model);
-                        var prop = value.GetType().GetProperty(metric.Name);
+                        foreach (var metric in metrics.Properties)
+                        {
+                            var value = property.GetValue(model);
+                            var prop = value.GetType().GetProperty(metric.Name);
 
-                        if (metric.Value != null)
-                            prop.SetValue(value, Convert.ChangeType(metric.Value, prop.PropertyType));
+                            if (metric.Value != null)
+                                prop.SetValue(value, Convert.ChangeType(metric.Value, prop.PropertyType));
+                        }
                     }
                 }
             }
