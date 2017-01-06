@@ -1,11 +1,3 @@
-C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\bin\Debug\Dashboard.Server.Monitoring.Service.exe.config
-C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\bin\Debug\Dashboard.Server.Monitoring.Service.exe
-C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\bin\Debug\Dashboard.Server.Monitoring.Service.pdb
-C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\obj\Debug\Dashboard.Server.Monitoring.Service.csprojResolveAssemblyReference.cache
-C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\obj\Debug\Dashboard.Server.Monitoring.Service.exe
-C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\obj\Debug\Dashboard.Server.Monitoring.Service.pdb
-C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\bin\Debug\Dashboard.Server.Monitoring.Monitor.dll
-C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\bin\Debug\Dashboard.Server.Monitoring.Monitor.pdb
 C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\bin\Debug\Dashboard.Server.Monitoring.Service.exe.config
 C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\bin\Debug\Dashboard.Server.Monitoring.Service.exe
 C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\bin\Debug\Dashboard.Server.Monitoring.Service.pdb
@@ -14,8 +6,3 @@ C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Da
 C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\obj\Debug\Dashboard.Server.Monitoring.Service.csprojResolveAssemblyReference.cache
 C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\obj\Debug\Dashboard.Server.Monitoring.Service.exe
 C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\obj\Debug\Dashboard.Server.Monitoring.Service.pdb
-C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\bin\Debug\config.json
-C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\bin\Debug\Newtonsoft.Json.dll
-C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\bin\Debug\Newtonsoft.Json.xml
-C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\bin\Debug\Dashboard.Server.Configuration.dll
-C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Service\bin\Debug\Dashboard.Server.Configuration.pdb
