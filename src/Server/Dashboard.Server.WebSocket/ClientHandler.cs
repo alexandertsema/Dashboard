@@ -124,6 +124,7 @@ namespace Dashboard.Server.WebSocket
                     //}
 
                     var opCode = Recieve(rawMessage);
+
                     Console.WriteLine($"Client {clientId} received {opCode} OpCode");
                     if (opCode.Equals(OpCodes.RequestInfoModel.ToString()))
                     {
@@ -147,18 +148,19 @@ namespace Dashboard.Server.WebSocket
                 {
                     tokenSource.Cancel();
 
-                    if (tokenSource.Token.IsCancellationRequested)
+//                    if (tokenSource.Token.IsCancellationRequested)
+//                    {
+                    Console.WriteLine($"Client {clientId} requested to disconnect #{Thread.CurrentThread.ManagedThreadId}");
+                    server.Clients--;
+                    if (server.Clients <= 0)
                     {
-                        Console.WriteLine($"Client {clientId} requested to disconnect #{Thread.CurrentThread.ManagedThreadId}");
-                        server.Clients--;
-                        if (server.Clients <= 0)
-                        {
-                            Console.WriteLine($"There are no more clients left connected to Server.Service, signalling Monitoring.Service to disconnect...");
-                            monitoringClient.Signal(OpCodes.StopBroadcasting);
-                        }
-                        Console.WriteLine($"Broadcasting #{Thread.CurrentThread.ManagedThreadId} for {clientId} ends");
-                        tokenSource.Token.ThrowIfCancellationRequested();
+                        Console.WriteLine($"There are no more clients left connected to Server.Service, signalling Monitoring.Service to disconnect...");
+                        monitoringClient.Signal(OpCodes.StopBroadcasting);
                     }
+                    Console.WriteLine($"Broadcasting #{Thread.CurrentThread.ManagedThreadId} for {clientId} ends");
+
+                    tokenSource.Token.ThrowIfCancellationRequested();
+//                    }
                 }
 
                 //while (!monitoringClient.Stream.DataAvailable) // waiting to recieve PerfomanceModel

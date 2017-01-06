@@ -62,7 +62,7 @@ namespace Dashboard.Server.Monitoring.Service
                     Console.WriteLine("Start broadcasting");
                     while (true)
                     {
-                        if (client.GetStream().DataAvailable) // wait for signal to stop broadcasting
+                        if (stream.DataAvailable) // wait for signal to stop broadcasting
                         {
                             rawMessage = new Byte[client.Available];
                             stream.Read(rawMessage, 0, rawMessage.Length);
