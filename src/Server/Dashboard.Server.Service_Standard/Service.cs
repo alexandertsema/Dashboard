@@ -1,4 +1,6 @@
 ﻿using System;
+using Dashboard.Server.Settings.Managers;
+using Dashboard.Server.Settings.Models;
 using Dashboard.Server.WebSocket;
 
 //using TestSt6andart.Test;
@@ -7,25 +9,28 @@ namespace Dashboard.Server.Service
 {
     class Service
     {
-        private static readonly string IP = "127.0.0.1";
-        private static readonly short PORT_SERVER = 2222;
-        private static readonly short PORT_CLIENT = 8888;
+        private static readonly ConfigManager configManager = new ConfigManager("config.json");
+        private static ConfigModel config;
+
         static void Main(string[] args)
         {
+            config = configManager.GetSettings();
+
             ServerStart();
+
             Console.ReadLine();
         }
 
         private static async void ServerStart()
         {
             var isFirstClient = true;
-            WebSocketServer server = new WebSocketServer(IP, PORT_SERVER); // init Server.Service
+            WebSocketServer server = new WebSocketServer(config.ServiceConfig.Ip, config.ServiceConfig.Port); // init Server.Service
             
-            WebSocketClient monitoringClient = new WebSocketClient(IP, PORT_CLIENT); // connect to Monitoring.Service 
+            WebSocketClient monitoringClient = new WebSocketClient(config.MonitoringServiceConfig.Ip, config.MonitoringServiceConfig.Port); // connect to Monitoring.Service 
             
             monitoringClient.Connect(); // waiting for incoming messages
             
-            Console.WriteLine($"Server.Service connected to Monitoring.Service at {IP}:{PORT_SERVER}, waiting for incoming infoModel...");
+            Console.WriteLine($"Server.Service connected to Monitoring.Service at {config.MonitoringServiceConfig.Ip}:{config.MonitoringServiceConfig.Port}, waiting for incoming infoModel...");
 
             while (!monitoringClient.Client.GetStream().DataAvailable) // wait for infoModel
             { 
@@ -35,7 +40,7 @@ namespace Dashboard.Server.Service
             Console.WriteLine($"InfoModel received: {infoModelString}");
 
             server.Start(); // Server.Service started
-            Console.WriteLine($"Server.Service started at {IP}:{PORT_SERVER}, waiting for clients...");
+            Console.WriteLine($"Server.Service started at {config.ServiceConfig.Ip}:{config.ServiceConfig.Port}, waiting for clients...");
             
             while (true) // allows multiple clients to connect
             {
@@ -51,8 +56,8 @@ namespace Dashboard.Server.Service
                 server.Clients++;
                 Console.WriteLine($"Now {server.Clients} connected");
 
-                var clientHandler = new ClientHandler(clientId, client, infoModelString, isFirstClient, monitoringClient, server); // start new task with new ClientHandler
-                
+                new ClientHandler(clientId, client, infoModelString, isFirstClient, monitoringClient, server);
+
                 isFirstClient = false;
             }
         }

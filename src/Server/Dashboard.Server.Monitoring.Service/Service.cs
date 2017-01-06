@@ -5,14 +5,22 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Dashboard.Server.Monitoring.Monitor.Helpers;
+using Dashboard.Server.Settings.Managers;
+using Dashboard.Server.Settings.Models;
 
 namespace Dashboard.Server.Monitoring.Service
 {
     class Service
     {
+        private static readonly ConfigManager configManager = new ConfigManager("config.json");
+        private static ConfigModel config;
+
         static void Main(string[] args)
         {
+            config = configManager.GetSettings();
+
             ServerStart();
+            
             Console.ReadLine();
         }
 
@@ -25,7 +33,7 @@ namespace Dashboard.Server.Monitoring.Service
             //todo: !!! port dll to .Net Standart !!!
 
             //todo: init server
-            var server = new TcpListener(IPAddress.Parse("127.0.0.1"), 8888);
+            var server = new TcpListener(IPAddress.Parse(config.MonitoringServiceConfig.Ip), config.MonitoringServiceConfig.Port);
 
             //todo: start waiting for client
             server.Start();

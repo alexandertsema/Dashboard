@@ -1,0 +1,7 @@
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Settings\bin\Debug\Dashboard.Server.Configuration.dll
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Settings\bin\Debug\Dashboard.Server.Configuration.pdb
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Settings\bin\Debug\Newtonsoft.Json.dll
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Settings\bin\Debug\Newtonsoft.Json.xml
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Settings\obj\Debug\Dashboard.Server.Configuration.csprojResolveAssemblyReference.cache
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Settings\obj\Debug\Dashboard.Server.Configuration.dll
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Settings\obj\Debug\Dashboard.Server.Configuration.pdb

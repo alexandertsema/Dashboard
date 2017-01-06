@@ -51,7 +51,7 @@ namespace Dashboard.Server.Service
                 server.Clients++;
                 Console.WriteLine($"Now {server.Clients} connected");
 
-                var clientHandler = new ClientHandler(clientId, client, infoModelString, isFirstClient, monitoringClient, server); // start new task with new ClientHandler
+                new ClientHandler(clientId, client, infoModelString, isFirstClient, monitoringClient, server); // start new task with new ClientHandler
                 
                 isFirstClient = false;
             }

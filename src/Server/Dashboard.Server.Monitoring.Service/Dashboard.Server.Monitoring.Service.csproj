@@ -49,12 +49,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dashboard.Server.Monitoring.Monitor\Dashboard.Server.Monitoring.Monitor.csproj">
       <Project>{8317fe28-007c-4c70-b338-ed4d0de922bb}</Project>
       <Name>Dashboard.Server.Monitoring.Monitor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dashboard.Server.Settings\Dashboard.Server.Configuration.csproj">
+      <Project>{c04198c7-3bc2-41ad-82a5-aaf93e296190}</Project>
+      <Name>Dashboard.Server.Configuration</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
