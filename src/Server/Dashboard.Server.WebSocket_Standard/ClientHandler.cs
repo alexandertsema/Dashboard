@@ -136,7 +136,7 @@ namespace Dashboard.Server.WebSocket
             }
         }
 
-        private void Broadcasting(NetworkStream stream, CancellationTokenSource tokenSource)
+        private async void Broadcasting(NetworkStream stream, CancellationTokenSource tokenSource)
         {
             while (true) // broadcast perfomanceModel to client
             {
@@ -156,8 +156,10 @@ namespace Dashboard.Server.WebSocket
                     tokenSource.Token.ThrowIfCancellationRequested();
                 }
 
-//                if (!monitoringClient.Stream.DataAvailable)
-//                    continue;
+                //if (!monitoringClient.Stream.DataAvailable) // consumes reasonable CPU, but not really need it on server side
+                //    continue;
+
+                //await WaitForMessageAsync(monitoringClient.Stream, tokenSource); //consumes to much CPU
 
                 var perfomanceModel = monitoringClient.Recieve();
 

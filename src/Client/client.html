@@ -99,6 +99,7 @@ var exampleSocket;
                 i++;
                 return;
             }
+            if (str == "") return;
             var model = JSON.parse(str);
 
             document.getElementById("LoadPercentage").innerHTML = model.CpuPerfomance.LoadPercentage;
