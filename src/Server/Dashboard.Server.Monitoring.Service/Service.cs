@@ -82,7 +82,15 @@ namespace Dashboard.Server.Monitoring.Service
                         //todo: until at least 1 client connected to Server.Service get perfomanceModel, send perfomanceModel
                         var perfomanceModel = monitor.GetPerfomanceStatistics();
                         response = Encoding.UTF8.GetBytes(SerializationHelper.Serialize(perfomanceModel));
-                        stream.Write(response, 0, response.Length);
+
+                        try
+                        {
+                            stream.Write(response, 0, response.Length);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e);
+                        }
 
                         //Thread.Sleep(100);
                     }

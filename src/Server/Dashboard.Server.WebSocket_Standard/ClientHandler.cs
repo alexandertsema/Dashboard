@@ -25,14 +25,6 @@ namespace Dashboard.Server.WebSocket
         {
         }
 
-        public ClientHandler(Guid clientId, TcpClient client)
-        {
-            this.clientId = clientId;
-            this.client = client;
-
-            InitializeClient();
-        }
-
         public ClientHandler(Guid clientId, TcpClient client, string infoModelString, bool isFirstClient, WebSocketClient monitoringClient, WebSocketServer server)
         {
             this.clientId = clientId;
@@ -45,35 +37,31 @@ namespace Dashboard.Server.WebSocket
             InitializeClient();
         }
 
-        public Guid ClientId
-        {
-            get { return clientId; }
-            private set { value = clientId; }
-        }
-        public TcpClient Client
-        {
-            get { return client; }
-            private set { value = client; }
-        }
+        public Guid ClientId => clientId;
 
-        private void InitializeClient()
+        public TcpClient Client => client;
+
+        private async void InitializeClient()
         {
-            
             var tokenSource = new CancellationTokenSource();
-            var mainTask = Task.Factory.StartNew(() => RunMainTaskAsync(tokenSource, tasks), tokenSource.Token,
-                TaskCreationOptions.None, TaskScheduler.Default);
-            tasks.Add(mainTask);
+
             try
             {
-                //mainTask.Wait(tokenSource.Token);
+                var t = Task.Factory.StartNew(() => 
+                            RunMainTaskAsync(tokenSource), 
+                                tokenSource.Token,
+                                TaskCreationOptions.None, 
+                                TaskScheduler.Default);
+                tasks.Add(t);
+                await t;
             }
-            catch (AggregateException)
+            catch (Exception e)
             {
-                Console.WriteLine($"Main Task {mainTask.Id} ends");
+                Console.WriteLine(e);
             }
         }
 
-        private void RunMainTaskAsync(CancellationTokenSource tokenSource, ConcurrentBag<Task> tasks)
+        private async Task RunMainTaskAsync(CancellationTokenSource tokenSource)
         {
             var isHandshaked = false;
             byte[] rawMessage;
@@ -98,29 +86,28 @@ namespace Dashboard.Server.WebSocket
                     }
 
                     Console.WriteLine($"Client {clientId} is waiting for incoming messages...");
-                    while (!stream.DataAvailable)
-                    {
-                        if (tokenSource.Token.IsCancellationRequested)
-                        {
-                            Console.WriteLine($"Main Task #{Thread.CurrentThread.ManagedThreadId} for {clientId} ends");
-                            tokenSource.Token.ThrowIfCancellationRequested();
-                        }
-                    }
+
+                    await WaitForMessageAsync(stream, tokenSource);
                     
-                    rawMessage = new Byte[client.Available];
-                    //try
+                    //while (!stream.DataAvailable)
                     //{
-                        stream.Read(rawMessage, 0, rawMessage.Length);
-                    //}
-                    //catch (IOException exception)
-                    //{
-                    //    //tokenSource.Cancel(); //todo: kill the thread if client disconnected
                     //    if (tokenSource.Token.IsCancellationRequested)
                     //    {
                     //        Console.WriteLine($"Main Task #{Thread.CurrentThread.ManagedThreadId} for {clientId} ends");
                     //        tokenSource.Token.ThrowIfCancellationRequested();
                     //    }
                     //}
+
+                    rawMessage = new Byte[client.Available];
+
+                    try
+                    {
+                        stream.Read(rawMessage, 0, rawMessage.Length);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
 
                     var opCode = Recieve(rawMessage);
 
@@ -130,16 +117,26 @@ namespace Dashboard.Server.WebSocket
                         Send(infoModelString, stream); // send infoModel to client
                         Console.WriteLine($"Client {clientId} starts broadcasting because he was the first client in the session: {isFirstClient}");
 
-                        var task = Task.Factory.StartNew(() =>
-                                Broadcasting(tokenSource, stream), tokenSource.Token, TaskCreationOptions.AttachedToParent,
-                            TaskScheduler.Default);
-                        tasks.Add(task);
+                        try
+                        {
+                            var t =  Task.Factory.StartNew(() =>
+                                    Broadcasting(stream, tokenSource), tokenSource.Token,
+                                        TaskCreationOptions.AttachedToParent,
+                                        TaskScheduler.Default);
+                            tasks.Add(t);
+                            await t;
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine($"Client {clientId} ends it thread {Thread.CurrentThread.ManagedThreadId}");
+                            break;
+                        }
                     }
                 }
             }
         }
 
-        private void Broadcasting(CancellationTokenSource tokenSource, NetworkStream stream)
+        private void Broadcasting(NetworkStream stream, CancellationTokenSource tokenSource)
         {
             while (true) // broadcast perfomanceModel to client
             {
@@ -147,8 +144,6 @@ namespace Dashboard.Server.WebSocket
                 {
                     tokenSource.Cancel();
 
-//                    if (tokenSource.Token.IsCancellationRequested)
-//                    {
                     Console.WriteLine($"Client {clientId} requested to disconnect #{Thread.CurrentThread.ManagedThreadId}");
                     server.Clients--;
                     if (server.Clients <= 0)
@@ -159,21 +154,28 @@ namespace Dashboard.Server.WebSocket
                     Console.WriteLine($"Broadcasting #{Thread.CurrentThread.ManagedThreadId} for {clientId} ends");
 
                     tokenSource.Token.ThrowIfCancellationRequested();
-//                    }
                 }
 
-                //while (!monitoringClient.Stream.DataAvailable) // waiting to recieve PerfomanceModel
-                //{
-                //}
-
-                if (!monitoringClient.Stream.DataAvailable)
-                    continue;
+//                if (!monitoringClient.Stream.DataAvailable)
+//                    continue;
 
                 var perfomanceModel = monitoringClient.Recieve();
-                //Console.WriteLine($"Client {clientId} received perfomanceModel: {perfomanceModel} from Monitoring.Service");
-                
+
                 Send(perfomanceModel, stream); // send PerfomanceModel to client
             }
+        }
+
+        private async Task WaitForMessageAsync(NetworkStream stream, CancellationTokenSource tokenSource)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                while (!stream.DataAvailable)
+                {
+                    if (!tokenSource.Token.IsCancellationRequested) continue;
+                    Console.WriteLine($"Main Task #{Thread.CurrentThread.ManagedThreadId} for {clientId} ends");
+                    tokenSource.Token.ThrowIfCancellationRequested();
+                }
+            });
         }
 
         // Public implementation of Dispose pattern callable by consumers.
@@ -205,5 +207,4 @@ namespace Dashboard.Server.WebSocket
         //    Dispose(false);
         //}
     }
-
 }
