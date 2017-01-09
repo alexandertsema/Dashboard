@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dashboard.Server.WebSocket_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dashboard.Server.Service_Standard", "Dashboard.Server.Service_Standard\Dashboard.Server.Service_Standard.csproj", "{EC029896-558D-425E-A5D4-B09B30D2A718}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dashboard.Server.Configuration", "Dashboard.Server.Settings\Dashboard.Server.Configuration.csproj", "{C04198C7-3BC2-41AD-82A5-AAF93E296190}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dashboard.Server.Configuration", "Dashboard.Server.Configuration\Dashboard.Server.Configuration.csproj", "{C04198C7-3BC2-41AD-82A5-AAF93E296190}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

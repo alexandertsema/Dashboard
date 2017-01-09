@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace Dashboard.Server.Settings.Helpers
+namespace Dashboard.Server.Configuration.Helpers
 {
     public class JsonHelper
     {

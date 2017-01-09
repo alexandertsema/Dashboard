@@ -1,8 +1,6 @@
-﻿using System;
-using System.IO;
-using Dashboard.Server.Settings.Helpers;
+﻿using Dashboard.Server.Configuration.Helpers;
 
-namespace Dashboard.Server.Settings.Managers
+namespace Dashboard.Server.Configuration.Managers
 {
     public class ConfigManager
     {
