@@ -9,3 +9,14 @@ C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Da
 C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\obj\Debug\netcoreapp1.1\Dashboard.Server.Service.pdb
 C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.1\Dashboard.Server.WebSocket.dll
 C:\Users\Alexander\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.1\Dashboard.Server.WebSocket.pdb
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.1\Dashboard.Server.Service.deps.json
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.1\Dashboard.Server.Service.runtimeconfig.json
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.1\Dashboard.Server.Service.runtimeconfig.dev.json
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.1\Dashboard.Server.Service.dll
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.1\Dashboard.Server.Service.pdb
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.1\Dashboard.Server.WebSocket.dll
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\bin\Debug\netcoreapp1.1\Dashboard.Server.WebSocket.pdb
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\obj\Debug\netcoreapp1.1\Dashboard.Server.Service.csprojResolveAssemblyReference.cache
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\obj\Debug\netcoreapp1.1\Dashboard.Server.Service.AssemblyInfo.cs
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\obj\Debug\netcoreapp1.1\Dashboard.Server.Service.dll
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Service\obj\Debug\netcoreapp1.1\Dashboard.Server.Service.pdb

@@ -1,0 +1,6 @@
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Monitor\bin\Release\Dashboard.Server.Monitoring.Monitor.dll
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Monitor\bin\Release\Dashboard.Server.Monitoring.Monitor.pdb
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Monitor\bin\Release\Microsoft.Management.Infrastructure.dll
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Monitor\obj\Release\Dashboard.Server.Monitoring.Monitor.csprojResolveAssemblyReference.cache
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Monitor\obj\Release\Dashboard.Server.Monitoring.Monitor.dll
+C:\Users\atsema\Documents\Visual Studio 2017\Projects\Dashboard\src\Server\Dashboard.Server.Monitoring.Monitor\obj\Release\Dashboard.Server.Monitoring.Monitor.pdb
