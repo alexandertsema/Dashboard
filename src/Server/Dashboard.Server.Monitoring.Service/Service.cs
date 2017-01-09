@@ -2,11 +2,9 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using Dashboard.Server.Configuration.Managers;
+using Dashboard.Server.Configuration.Models;
 using Dashboard.Server.Monitoring.Monitor.Helpers;
-using Dashboard.Server.Settings.Managers;
-using Dashboard.Server.Settings.Models;
 
 namespace Dashboard.Server.Monitoring.Service
 {

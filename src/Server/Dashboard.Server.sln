@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dashboard.Server.Service_St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dashboard.Server.Configuration", "Dashboard.Server.Configuration\Dashboard.Server.Configuration.csproj", "{C04198C7-3BC2-41AD-82A5-AAF93E296190}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dashboard.Server.Logger", "Dashboard.Server.Logger\Dashboard.Server.Logger.csproj", "{2A68D979-1C5A-4ACD-953A-01D4E86C9934}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,18 @@ Global
 		{C04198C7-3BC2-41AD-82A5-AAF93E296190}.Release|x64.Build.0 = Release|Any CPU
 		{C04198C7-3BC2-41AD-82A5-AAF93E296190}.Release|x86.ActiveCfg = Release|Any CPU
 		{C04198C7-3BC2-41AD-82A5-AAF93E296190}.Release|x86.Build.0 = Release|Any CPU
+		{2A68D979-1C5A-4ACD-953A-01D4E86C9934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A68D979-1C5A-4ACD-953A-01D4E86C9934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A68D979-1C5A-4ACD-953A-01D4E86C9934}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2A68D979-1C5A-4ACD-953A-01D4E86C9934}.Debug|x64.Build.0 = Debug|Any CPU
+		{2A68D979-1C5A-4ACD-953A-01D4E86C9934}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2A68D979-1C5A-4ACD-953A-01D4E86C9934}.Debug|x86.Build.0 = Debug|Any CPU
+		{2A68D979-1C5A-4ACD-953A-01D4E86C9934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A68D979-1C5A-4ACD-953A-01D4E86C9934}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A68D979-1C5A-4ACD-953A-01D4E86C9934}.Release|x64.ActiveCfg = Release|Any CPU
+		{2A68D979-1C5A-4ACD-953A-01D4E86C9934}.Release|x64.Build.0 = Release|Any CPU
+		{2A68D979-1C5A-4ACD-953A-01D4E86C9934}.Release|x86.ActiveCfg = Release|Any CPU
+		{2A68D979-1C5A-4ACD-953A-01D4E86C9934}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
