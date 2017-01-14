@@ -120,9 +120,9 @@ namespace Dashboard.Server.WebSocket
                         try
                         {
                             var t =  Task.Factory.StartNew(() =>
-                                    Broadcasting(stream, tokenSource), tokenSource.Token,
-                                        TaskCreationOptions.AttachedToParent,
-                                        TaskScheduler.Default);
+                                        Broadcasting(stream, tokenSource), tokenSource.Token,
+                                            TaskCreationOptions.AttachedToParent,
+                                            TaskScheduler.Default);
                             tasks.Add(t);
                             await t;
                         }
@@ -136,7 +136,7 @@ namespace Dashboard.Server.WebSocket
             }
         }
 
-        private async void Broadcasting(NetworkStream stream, CancellationTokenSource tokenSource)
+        private void Broadcasting(NetworkStream stream, CancellationTokenSource tokenSource)
         {
             while (true) // broadcast perfomanceModel to client
             {
@@ -150,6 +150,10 @@ namespace Dashboard.Server.WebSocket
                     {
                         Console.WriteLine($"There are no more clients left connected to Server.Service, signalling Monitoring.Service to disconnect...");
                         monitoringClient.Signal(OpCodes.StopBroadcasting);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Now Client(s) {server.Clients}");
                     }
                     Console.WriteLine($"Broadcasting #{Thread.CurrentThread.ManagedThreadId} for {clientId} ends");
 
@@ -177,7 +181,7 @@ namespace Dashboard.Server.WebSocket
                     Console.WriteLine($"Main Task #{Thread.CurrentThread.ManagedThreadId} for {clientId} ends");
                     tokenSource.Token.ThrowIfCancellationRequested();
                 }
-            });
+            }, tokenSource.Token);
         }
 
         // Public implementation of Dispose pattern callable by consumers.

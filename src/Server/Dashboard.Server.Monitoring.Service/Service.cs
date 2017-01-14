@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 using Dashboard.Server.Configuration.Managers;
 using Dashboard.Server.Configuration.Models;
 using Dashboard.Server.Monitoring.Monitor.Helpers;
@@ -53,9 +54,8 @@ namespace Dashboard.Server.Monitoring.Service
             {
                 Console.WriteLine($"Waiting for signal...");
                 //todo: waiting for signal
-                while (!stream.DataAvailable) // wait for signal to start broadcasting todo: very excpensive! up to 16% CPU
-                {
-                }
+                await WaitForSignalAsync(stream);
+
 
                 //todo: signal received
                 var rawMessage = new Byte[client.Available];
@@ -96,6 +96,16 @@ namespace Dashboard.Server.Monitoring.Service
                     }
                 }
             }
+        }
+
+        private static async Task WaitForSignalAsync(NetworkStream stream)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                while (!stream.DataAvailable)// wait for signal to start broadcasting todo: very excpensive! up to 16% CPU
+                {
+                }
+            });
         }
     }
 }
