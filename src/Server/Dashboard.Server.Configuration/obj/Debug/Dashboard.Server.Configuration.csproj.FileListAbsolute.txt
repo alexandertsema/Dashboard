@@ -1,0 +1,7 @@
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Configuration\bin\Debug\Dashboard.Server.Configuration.dll
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Configuration\bin\Debug\Dashboard.Server.Configuration.pdb
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Configuration\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Configuration\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Configuration\obj\Debug\Dashboard.Server.Configuration.csprojResolveAssemblyReference.cache
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Configuration\obj\Debug\Dashboard.Server.Configuration.dll
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Configuration\obj\Debug\Dashboard.Server.Configuration.pdb

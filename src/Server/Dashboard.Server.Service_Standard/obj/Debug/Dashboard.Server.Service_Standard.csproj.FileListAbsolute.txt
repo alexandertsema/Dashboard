@@ -1,0 +1,13 @@
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Service_Standard\bin\Debug\config.json
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Service_Standard\bin\Debug\Dashboard.Server.Service_Standard.exe.config
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Service_Standard\bin\Debug\Dashboard.Server.Service_Standard.exe
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Service_Standard\bin\Debug\Dashboard.Server.Service_Standard.pdb
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Service_Standard\bin\Debug\Dashboard.Server.Configuration.dll
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Service_Standard\bin\Debug\Dashboard.Server.WebSocket_Standard.dll
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Service_Standard\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Service_Standard\bin\Debug\Dashboard.Server.Configuration.pdb
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Service_Standard\bin\Debug\Dashboard.Server.WebSocket_Standard.pdb
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Service_Standard\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Service_Standard\obj\Debug\Dashboard.Server.Service_Standard.csprojResolveAssemblyReference.cache
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Service_Standard\obj\Debug\Dashboard.Server.Service_Standard.exe
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.Service_Standard\obj\Debug\Dashboard.Server.Service_Standard.pdb

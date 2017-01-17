@@ -15,7 +15,6 @@ namespace Dashboard.Server.WebSocket
         private readonly Guid clientId;
         private readonly TcpClient client;
         private readonly String infoModelString;
-        private readonly Boolean isFirstClient;
         private readonly WebSocketClient monitoringClient;
         private readonly WebSocketServer server;
         bool disposed;
@@ -25,12 +24,11 @@ namespace Dashboard.Server.WebSocket
         {
         }
 
-        public ClientHandler(Guid clientId, TcpClient client, string infoModelString, bool isFirstClient, WebSocketClient monitoringClient, WebSocketServer server)
+        public ClientHandler(Guid clientId, TcpClient client, string infoModelString, WebSocketClient monitoringClient, WebSocketServer server)
         {
             this.clientId = clientId;
             this.client = client;
             this.infoModelString = infoModelString;
-            this.isFirstClient = isFirstClient;
             this.monitoringClient = monitoringClient;
             this.server = server;
 
@@ -115,7 +113,7 @@ namespace Dashboard.Server.WebSocket
                     if (opCode.Equals(OpCodes.RequestInfoModel.ToString()))
                     {
                         Send(infoModelString, stream); // send infoModel to client
-                        Console.WriteLine($"Client {clientId} starts broadcasting because he was the first client in the session: {isFirstClient}");
+                        Console.WriteLine($"Client {clientId} starts broadcasting");
 
                         try
                         {
