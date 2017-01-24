@@ -9,7 +9,7 @@ At the current moment the main goal is to finish back-end services part, front-e
 This projects implements OS and hardware monitoring dashboard system for remote servers. 
 It uses custom Web Socket protocol implementation with encrypted communication. The Main Service works as a demultiplexer for the recieved from the Monitoring Service data. All data is in cozy Json format.
 
-### Arcitecture
+### Architecture
 
 The monitoring system has 3 main layers:
 
