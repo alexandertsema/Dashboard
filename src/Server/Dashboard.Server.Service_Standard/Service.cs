@@ -1,9 +1,7 @@
 ﻿using System;
-using Dashboard.Server.Settings.Managers;
-using Dashboard.Server.Settings.Models;
+using Dashboard.Server.Configuration.Managers;
+using Dashboard.Server.Configuration.Models;
 using Dashboard.Server.WebSocket;
-
-//using TestSt6andart.Test;
 
 namespace Dashboard.Server.Service
 {
@@ -23,7 +21,6 @@ namespace Dashboard.Server.Service
 
         private static async void ServerStart()
         {
-            var isFirstClient = true;
             WebSocketServer server = new WebSocketServer(config.ServiceConfig.Ip, config.ServiceConfig.Port); // init Server.Service
             
             WebSocketClient monitoringClient = new WebSocketClient(config.MonitoringServiceConfig.Ip, config.MonitoringServiceConfig.Port); // connect to Monitoring.Service 
@@ -56,9 +53,8 @@ namespace Dashboard.Server.Service
                 server.Clients++;
                 Console.WriteLine($"Now {server.Clients} connected");
 
-                new ClientHandler(clientId, client, infoModelString, isFirstClient, monitoringClient, server);
-
-                isFirstClient = false;
+                new ClientHandler(clientId, client, infoModelString, monitoringClient, server);
+                
             }
         }
     }

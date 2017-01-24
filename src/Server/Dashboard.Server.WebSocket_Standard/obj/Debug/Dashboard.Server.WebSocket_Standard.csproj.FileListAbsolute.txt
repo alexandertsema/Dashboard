@@ -1,0 +1,5 @@
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.WebSocket_Standard\bin\Debug\Dashboard.Server.WebSocket_Standard.dll
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.WebSocket_Standard\bin\Debug\Dashboard.Server.WebSocket_Standard.pdb
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.WebSocket_Standard\obj\Debug\Dashboard.Server.WebSocket_Standard.csprojResolveAssemblyReference.cache
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.WebSocket_Standard\obj\Debug\Dashboard.Server.WebSocket_Standard.dll
+C:\Users\Alexander\Documents\Visual Studio 2015\Projects\Dashboard\src\Server\Dashboard.Server.WebSocket_Standard\obj\Debug\Dashboard.Server.WebSocket_Standard.pdb

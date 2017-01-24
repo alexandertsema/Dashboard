@@ -2,11 +2,10 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using Dashboard.Server.Configuration.Managers;
+using Dashboard.Server.Configuration.Models;
 using Dashboard.Server.Monitoring.Monitor.Helpers;
-using Dashboard.Server.Settings.Managers;
-using Dashboard.Server.Settings.Models;
 
 namespace Dashboard.Server.Monitoring.Service
 {
@@ -55,9 +54,8 @@ namespace Dashboard.Server.Monitoring.Service
             {
                 Console.WriteLine($"Waiting for signal...");
                 //todo: waiting for signal
-                while (!stream.DataAvailable) // wait for signal to start broadcasting todo: very excpensive! up to 16% CPU
-                {
-                }
+                await WaitForSignalAsync(stream);
+
 
                 //todo: signal received
                 var rawMessage = new Byte[client.Available];
@@ -84,12 +82,30 @@ namespace Dashboard.Server.Monitoring.Service
                         //todo: until at least 1 client connected to Server.Service get perfomanceModel, send perfomanceModel
                         var perfomanceModel = monitor.GetPerfomanceStatistics();
                         response = Encoding.UTF8.GetBytes(SerializationHelper.Serialize(perfomanceModel));
-                        stream.Write(response, 0, response.Length);
+
+                        try
+                        {
+                            stream.Write(response, 0, response.Length);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e);
+                        }
 
                         //Thread.Sleep(100);
                     }
                 }
             }
+        }
+
+        private static async Task WaitForSignalAsync(NetworkStream stream)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                while (!stream.DataAvailable)// wait for signal to start broadcasting todo: very excpensive! up to 16% CPU
+                {
+                }
+            });
         }
     }
 }
